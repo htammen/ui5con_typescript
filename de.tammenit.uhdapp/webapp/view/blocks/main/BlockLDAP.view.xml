@@ -1,0 +1,27 @@
+<mvc:View
+		controllerName="de.tammenit.UHDApp.controller.blocks.main.BlockLDAP"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:form="sap.ui.layout.form"
+		xmlns="sap.m">
+	<VBox>
+		<form:SimpleForm
+				maxContainerCols="2"
+				editable="false"
+				layout="ResponsiveGridLayout"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="4"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsL="1"
+				columnsM="1">
+			<form:content>
+				<Label text="{i18n>page.main.section.ldap.usercreated.label}" />
+				<Text text="{path: 'created', formatter: '.formatCreateDate'}" />
+				<Label text="{i18n>page.main.section.ldap.useractive.label}" />
+				<Text text="{= ${active} ? ${i18n>yes} : ${i18n>no} }" />
+			</form:content>
+		</form:SimpleForm>
+	</VBox>
+</mvc:View>

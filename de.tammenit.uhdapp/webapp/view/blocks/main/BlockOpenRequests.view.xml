@@ -1,0 +1,47 @@
+<mvc:View
+		controllerName="de.tammenit.UHDApp.controller.blocks.main.BlockOpenRequests"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m">
+	<VBox>
+		<Table
+				id="openRequestsRolesTable"
+				inset="false"
+				headerText="{= ${i18n>page.main.section.roles.table.openrequests.header} + ' (' + ${path: '', formatter:'.formatTableCount'} +')'}"
+				items="{
+				path: '',
+				sorter: {
+					path: 'appName',
+					group: '.getGroup'
+				}
+			}">
+			<columns>
+				<Column width="12em">
+					<Text text="{i18n>page.main.section.roles.table.assignedroles.column.application}" />
+				</Column>
+				<Column
+						minScreenWidth="Tablet"
+						demandPopin="true">
+					<Text text="{i18n>page.main.section.roles.table.assignedroles.column.description}" />
+				</Column>
+				<Column demandPopin="false">
+					<Text text="{i18n>page.main.section.roles.table.assignedroles.column.role}" />
+				</Column>
+				<Column
+						minScreenWidth="Desktop"
+						demandPopin="true">
+					<Text text="{i18n>page.main.section.roles.table.assignedroles.column.roledescription}" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem detailPress="onRolePress">
+					<cells>
+						<Text text="{appName}" />
+						<Text text="{appDescription}" />
+						<Text text="{roleName}" />
+						<Text text="{roleDescription}" />
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+</mvc:View>

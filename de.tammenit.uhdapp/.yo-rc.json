@@ -1,0 +1,8 @@
+{
+  "generator-easy-ui5": {
+    "projectname": "UHDApp",
+    "namespace": "de.tammenit",
+    "viewtype": "XML",
+    "viewname": "Main"
+  }
+}

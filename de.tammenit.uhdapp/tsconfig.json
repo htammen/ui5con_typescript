@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+			"module": "none",
+			"target": "es5",
+			"sourceMap": true,
+			"noEmit": false,
+			"downlevelIteration": true,
+			"checkJs": false,
+			"allowJs": false,
+			"lib": ["dom", "es5", "es2016"],
+			"types": ["@openui5/ts-types"]
+    },
+    "include": [
+        "./webapp/**/*.ts",
+        "./typings/**/*"
+		],
+	"exclude": ["./node_modules/**/*"]
+}

@@ -1,0 +1,172 @@
+<mvc:View
+		controllerName="de.tammenit.UHDApp.controller.Main"
+		displayBlock="true"
+		xmlns="sap.uxap"
+		xmlns:m="sap.m"
+		xmlns:l="sap.ui.layout"
+		xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+		xmlns:form="sap.ui.layout.form"
+		xmlns:blocksMain="de.tammenit.UHDApp.view.blocks.main"
+		xmlns:mvc="sap.ui.core.mvc">
+	<m:Page title="{i18n>title}">
+		<m:content>
+			<ObjectPageLayout
+					id="ObjectPageLayout"
+					showTitleInHeaderContent="true"
+					alwaysShowContentHeader="true"
+					preserveHeaderStateOnScroll="true"
+					headerContentPinnable="true"
+					isChildPage="false"
+					showHeaderContent="{viewModel>/showObjectPage}"
+					upperCaseAnchorBar="false">
+				<headerTitle>
+					<ObjectPageDynamicHeaderTitle>
+						<heading>
+							<m:HBox>
+								<m:SearchField
+										id="idSearchField"
+										enableSuggestions="true"
+										search="onSearch"
+										suggest="onSuggest"
+										suggestionItems="{
+									path: 'viewModel>/userList',
+									sorter: { path: 'viewModel>email' }
+								}">
+									<m:suggestionItems>
+										<m:SuggestionItem
+												text="{viewModel>userId}"
+												description=" -- {path:'viewModel>email'} - {path:'viewModel>firstName'}, {path:'viewModel>lastName'}"
+												key="{viewModel>userId}" />
+									</m:suggestionItems>
+								</m:SearchField>
+							</m:HBox>
+						</heading>
+						<breadcrumbs>
+							<m:Breadcrumbs
+									currentLocationText="{viewModel>/breadcrumbs/currentText}"
+									links="{viewModel>/breadcrumbs/links}">
+								<m:links>
+									<m:Link
+											text="{viewModel>text}"
+											app:linkTarget="{viewModel>linkTarget}"
+											press="onBreadcrumbLinkPress" />
+								</m:links>
+							</m:Breadcrumbs>
+						</breadcrumbs>
+					</ObjectPageDynamicHeaderTitle>
+				</headerTitle>
+				<headerContent>
+					<m:VBox>
+						<m:FlexBox
+								wrap="Wrap"
+								fitContainer="true"
+								alignItems="Stretch">
+							<l:VerticalLayout class="sapUiLargeMarginEnd">
+								<m:Title text="{=%{userData/firstName} + ' ' + %{userData/lastName}}" />
+								<m:Text text="{userData/email}" />
+								<m:Link text="{userData/phone}" />
+							</l:VerticalLayout>
+							<l:VerticalLayout>
+								<m:Label text="{userData/company}" />
+								<m:Label text="{userData/location}" />
+							</l:VerticalLayout>
+						</m:FlexBox>
+					</m:VBox>
+				</headerContent>
+				<sections>
+					<ObjectPageSection
+							id="idSectionMessagePage"
+							showTitle="false"
+							visible="{= !${viewModel>/showObjectPage} }">
+						<subSections>
+							<ObjectPageSubSection>
+								<blocks>
+									<m:MessagePage
+											showHeader="false"
+											text="{i18n>page.main.section.messagetext.text}" />
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					<ObjectPageSection
+							id="idSectionRegistration"
+							title="{i18n>page.main.section.registration.header}"
+							visible="{viewModel>/showObjectPage}">
+						<subSections>
+							<ObjectPageSubSection>
+								<blocks>
+									<form:SimpleForm
+											maxContainerCols="2"
+											editable="false"
+											layout="ResponsiveGridLayout"
+											labelSpanL="4"
+											labelSpanM="4"
+											labelSpanS="4"
+											emptySpanL="0"
+											emptySpanM="0"
+											emptySpanS="0"
+											columnsL="1"
+											columnsM="1">
+										<form:content>
+											<m:Label text="{i18n>page.main.section.registration.date.label}" />
+											<m:Text text="{path: 'registration/created', formatter: '.formatCreateDate'}" />
+										</form:content>
+									</form:SimpleForm>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+
+					<ObjectPageSection
+							id="idSectionLDAP"
+							title="{i18n>page.main.section.ldap.header}"
+							visible="{viewModel>/showObjectPage}">
+						<subSections>
+							<ObjectPageSubSection>
+								<blocks>
+									<blocksMain:BlockLDAP id="blockLDAP" />
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					<ObjectPageSection
+							id="idSectionRoles"
+							title="{i18n>page.main.section.roles.header}"
+							visible="{viewModel>/showObjectPage}">
+						<subSections>
+							<ObjectPageSubSection>
+								<blocks>
+									<blocksMain:BlockAssignedRoles id="blockMain" />
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					<ObjectPageSection
+							id="idSectionRequests"
+							title="{i18n>page.main.section.requests.header}"
+							visible="{viewModel>/showObjectPage}">
+						<subSections>
+							<ObjectPageSubSection>
+								<blocks>
+									<blocksMain:BlockOpenRequests id="blockOpenRequests" />
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					<ObjectPageSection
+							id="idSectionData"
+							title="{i18n>page.main.section.data.header}"
+							visible="{viewModel>/showObjectPage}">
+						<subSections>
+							<ObjectPageSubSection>
+								<blocks>
+									<blocksMain:BlockPersonalData id="blockPersonalData" />
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+				</sections>
+			</ObjectPageLayout>
+		</m:content>
+	</m:Page>
+</mvc:View>

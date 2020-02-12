@@ -1,0 +1,20 @@
+ID: UHDApp
+_schema-version: 3.2.0
+description: Enter description here
+version: 0.0.1
+
+modules:
+ - name: UHDApp
+   type: nodejs
+   path: dist
+   parameters:
+      disk-quota: 512M
+      memory: 512M
+   requires:
+    - name: dest_UHDApp
+resources:
+ - name: dest_UHDApp
+   parameters:
+      service-plan: lite
+      service: destination
+   type: org.cloudfoundry.managed-service

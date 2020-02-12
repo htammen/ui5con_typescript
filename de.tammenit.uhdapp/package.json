@@ -1,0 +1,68 @@
+{
+    "name": "uhd-app",
+    "author": {
+        "name": "Helmut Tammen",
+        "email": "h.tammen@tammen-it-solutions.de",
+        "url": "https://htammen.github.io/"
+    },
+    "version": "1.0.0",
+    "license": "MIT",
+    "keywords": [
+        "uhd",
+        "user help desk",
+        "support",
+        "ui5con",
+        "typescript"
+    ],
+    "description": "A program to demonstrate the use of TypeScript with openUI5",
+    "engines": {
+        "node": ">=10.0.0",
+        "npm": ">=6.13.0",
+        "yarn": ">=1.21.0"
+    },
+    "scripts": {
+        "start": "ui5 serve --accept-remote-connections true -o index.html",
+        "serve": "ui5 serve",
+        "test": "npm run lint && npm run karma",
+        "testlocal": "npm run karmalocal",
+        "karma-ci": "karma start karma-ci.conf.js",
+        "karma": "rimraf coverage && start-server-and-test serve http://localhost:8080 karma-ci",
+        "karmalocal": "rimraf coverage && start-server-and-test serve http://localhost:8080 karma-local",
+        "lint": "eslint webapp",
+        "build-ui": "rimraf dist && tsc --build tsconfig.json && ui5 build --a",
+        "build-ui-dev": "rimraf dist && tsc --build tsconfig.json && ui5 build dev --a --dev-exclude-project=sap.ui.core sap.m sap.f sap.ui.layout sap.uxap themelib_sap_belize themelib_sap_fiori_3",
+        "build-sc": "rimraf dist && tsc --build tsconfig.json && ui5 build self-contained --all --dest=dist",
+        "package-cf": "npm run build-ui && cp cf_deployment_resources/package.json dist/package.json && cp cf_deployment_resources/xs-app.json dist/xs-app.json && mbt init && make -f Makefile.mta p=cf",
+        "deploy-cf": "npm run package-cf && cross-var cf deploy mta_archives/UHDApp_$npm_package_version.mtar",
+        "cf-log": "cf logs UHDApp"
+    },
+    "dependencies": {
+        "@openui5/sap.m": "^1.67.1",
+        "@openui5/sap.ui.core": "^1.67.1",
+        "@openui5/sap.ui.layout": "^1.67.1",
+        "@openui5/sap.uxap": "^1.67.1",
+        "@openui5/themelib_sap_belize": "^1.67.1",
+        "@openui5/themelib_sap_fiori_3": "^1.67.1"
+    },
+    "devDependencies": {
+        "@openui5/ts-types": "^1.65.1",
+        "@typescript-eslint/eslint-plugin": "^2.13.0",
+        "@typescript-eslint/parser": "^2.13.0",
+        "@ui5/cli": "^1.5.5",
+        "cross-var": "^1.1.0",
+        "eslint": "^6.8.0",
+        "karma": "^3.1.3",
+        "karma-chrome-launcher": "^2.2.0",
+        "karma-coverage": "^1.1.2",
+        "karma-openui5": "^0.2.3",
+        "karma-qunit": "^1.2.1",
+        "ncp": "^2.0.0",
+        "qunitjs": "^2.4.1",
+        "rimraf": "^2.6.2",
+        "start-server-and-test": "^1.9.1",
+        "prettier": "^1.19.1",
+        "eslint-config-prettier": "^6.7.0",
+        "eslint-plugin-prettier": "^3.1.1",
+        "typescript": "^3.7.4"
+    }
+}

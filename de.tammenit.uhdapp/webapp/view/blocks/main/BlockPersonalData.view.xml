@@ -1,0 +1,37 @@
+<mvc:View
+		controllerName="de.tammenit.UHDApp.controller.blocks.main.BlockPersonalData"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:form="sap.ui.layout.form"
+		xmlns="sap.m">
+	<VBox>
+		<form:SimpleForm
+				maxContainerCols="2"
+				editable="false"
+				layout="ResponsiveGridLayout"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="4"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsL="1"
+				columnsM="1">
+			<form:content>
+				<Label text="{i18n>page.main.section.personaldata.userid.label}" />
+				<Text text="{path: 'userId', type: 'sap.ui.model.type.String'}" />
+				<Label text="{i18n>page.main.section.personaldata.title.label}" />
+				<Text text="{path: 'title', type: 'sap.ui.model.type.String'}" />
+				<Label text="{i18n>page.main.section.personaldata.firstname.label}" />
+				<Text text="{path: 'firstName', type: 'sap.ui.model.type.String'}" />
+				<Label text="{i18n>page.main.section.personaldata.lastname.label}" />
+				<Text text="{path: 'lastName', type: 'sap.ui.model.type.String'}" />
+				<Label text="{i18n>page.main.section.personaldata.email.label}" />
+				<Text text="{path: 'email', type: 'sap.ui.model.type.String'}" />
+				<Label text="{i18n>page.main.section.personaldata.company.label}" />
+				<Text text="{path: 'company', type: 'sap.ui.model.type.String'}" />
+				<Label text="{i18n>page.main.section.personaldata.location.label}" />
+				<Text text="{path: 'location', type: 'sap.ui.model.type.String'}" />
+			</form:content>
+		</form:SimpleForm>
+	</VBox>
+</mvc:View>

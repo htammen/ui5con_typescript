@@ -1,0 +1,97 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "de.tammenit.UHDApp",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}"
+	},
+
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "de.tammenit.UHDApp.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.60.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {},
+				"sap.f": {},
+				"sap.ui.unified": {},
+				"sap.uxap": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "de.tammenit.UHDApp.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"bypassed": {
+					"target": "notFound"
+				 },
+				"viewPath": "de.tammenit.UHDApp.view",
+				"controlId": "idAppControl",
+				"controlAggregation": "pages",
+				"async": true
+			},
+			"routes": [{
+				"name": "RouteMain",
+				"pattern": "/",
+				"target": ["TargetMain"]
+			}],
+			"targets": {
+				"TargetMain": {
+					"viewType": "XML",
+					"viewLevel": 1,
+					"viewName": "Main"
+				},
+				"notFound": {
+					"viewId": "notFound",
+					"viewName": "NotFound",
+					"transition": "show"
+				}
+			}
+		}
+	}
+}
