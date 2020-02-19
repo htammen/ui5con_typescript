@@ -21,3 +21,6 @@ So I thought naming the folder **pre~~z~~si** was a good idea.
 
 ### Folder tssandbox
 The folder tssandbox contains some simple core Typescript examples
+
+### Folder .devcontainer
+If you have installed the [VS Code Remote Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension you are automatically asked if you want to open this workspace in an isolated docker container as soon as you open the workspace file [ui5con_brussels.code-workspace](https://github.com/htammen/ui5con_typescript/blob/master/ui5con_brussels.code-workspace) in VS Code.
